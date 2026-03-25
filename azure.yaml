@@ -1,26 +1,21 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
-
-# This is an example starter azure.yaml file containing several example services in comments below.
-# Make changes as needed to describe your application setup.
-# To learn more about the azure.yaml file, visit https://learn.microsoft.com/en-us/azure/developer/azure-developer-cli/azd-schema
-
-# Name of the application.
 name: azd-starter
 hooks:
   preprovision:
     shell: pwsh
-    run: |
-      dotnet run --project ./hooks/lets-encrypt/
+    run: 'dotnet run --project ./hooks/lets-encrypt/
+
+      '
   postprovision:
     shell: pwsh
-    run: |
-      dotnet run --project ./hooks/cog-search-index-and-indexer/cog-search-index-and-indexer/
+    run: 'dotnet run --project ./hooks/cog-search-index-and-indexer/cog-search-index-and-indexer/
+
+      '
 services:
   internal-api:
     language: ts
     project: ./apps/sample-private-api
     host: appservice
-    hooks: 
+    hooks:
       prerestore:
         shell: pwsh
         run: npm i
@@ -32,3 +27,5 @@ services:
     language: dotnet
     project: ./apps/content-splitter-function/ContentSplitter/ContentSplitter.csproj
     host: appservice
+metadata:
+  template: LockedDownChatBot@0.0.1-beta
